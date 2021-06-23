@@ -1,0 +1,9 @@
+diff -up sip-5.5.0/sipbuild/py_versions.py.py310 sip-5.5.0/sipbuild/py_versions.py
+--- sip-5.5.0/sipbuild/py_versions.py.py310	2020-11-23 08:21:33.000000000 -0500
++++ sip-5.5.0/sipbuild/py_versions.py	2021-06-14 22:08:07.070489670 -0400
+@@ -23,4 +23,4 @@
+ 
+ # The first and last supported minor versions of Python v3.
+ FIRST_SUPPORTED_MINOR = 5
+-LAST_SUPPORTED_MINOR = 9
++LAST_SUPPORTED_MINOR = 10
