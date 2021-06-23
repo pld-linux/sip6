@@ -1,7 +1,7 @@
 Summary:	SIP - Python/C++ Bindings Generator
 Name:		sip5
 Version:	5.5.0
-Release:	1
+Release:	2
 License:	GPL v2
 #Source0Download:        https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
@@ -30,8 +30,6 @@ also used to generate wxPython, the Python bindings for wxWidgets.
 rm -rf $RPM_BUILD_ROOT
 %py3_install
 
-%{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/sipbuild/module/source
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -56,3 +54,4 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/sipbuild/tools
 %{py3_sitedir}/sipbuild/tools/*.py
 %{py3_sitedir}/sipbuild/tools/__pycache__
+%{py3_sitedir}/sipbuild/module/source
