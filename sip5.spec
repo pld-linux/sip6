@@ -1,7 +1,7 @@
 Summary:	SIP - Python/C++ Bindings Generator
 Name:		sip5
 Version:	5.5.0
-Release:	4
+Release:	5
 License:	GPL v2
 #Source0Download:        https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
