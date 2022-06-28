@@ -1,7 +1,7 @@
 Summary:	SIP - Python/C++ Bindings Generator
 Name:		sip6
 Version:	6.6.2
-Release:	1
+Release:	2
 License:	GPL v2
 #Source0Download:        https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
@@ -45,7 +45,9 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitedir}/sipbuild/distinfo/*.py
 %{py3_sitedir}/sipbuild/distinfo/__pycache__
 %{py3_sitedir}/sipbuild/generator/*.py
+%dir %{py3_sitedir}/sipbuild/generator
 %{py3_sitedir}/sipbuild/generator/__pycache__
+%dir %{py3_sitedir}/sipbuild/generator/parser
 %{py3_sitedir}/sipbuild/generator/parser/*.py
 %{py3_sitedir}/sipbuild/generator/parser/__pycache__
 %dir %{py3_sitedir}/sipbuild/module
