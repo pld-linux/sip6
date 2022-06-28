@@ -1,15 +1,15 @@
 Summary:	SIP - Python/C++ Bindings Generator
-Name:		sip5
-Version:	5.5.0
-Release:	5
+Name:		sip6
+Version:	6.6.2
+Release:	1
 License:	GPL v2
 #Source0Download:        https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
-# Source0-md5:	657c52aff0a180fc0f481e210bc9a2ba
+# Source0-md5:	620eb75a8b22fb6af9c6044aa015782d
 URL:		https://www.riverbankcomputing.com/software/sip
-Patch0:		python3.10.patch
 BuildRequires:	python3-devel
 BuildRequires:	python3-setuptools
+Obsoletes:	sip5 < 6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -21,7 +21,6 @@ also used to generate wxPython, the Python bindings for wxWidgets.
 
 %prep
 %setup -q -n sip-%{version}
-%patch0 -p1
 
 %build
 %py3_build
@@ -45,9 +44,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/sipbuild/distinfo
 %{py3_sitedir}/sipbuild/distinfo/*.py
 %{py3_sitedir}/sipbuild/distinfo/__pycache__
-%dir %{py3_sitedir}/sipbuild/legacy
-%{py3_sitedir}/sipbuild/legacy/*.py
-%{py3_sitedir}/sipbuild/legacy/__pycache__
+%{py3_sitedir}/sipbuild/generator/*.py
+%{py3_sitedir}/sipbuild/generator/__pycache__
+%{py3_sitedir}/sipbuild/generator/parser/*.py
+%{py3_sitedir}/sipbuild/generator/parser/__pycache__
 %dir %{py3_sitedir}/sipbuild/module
 %{py3_sitedir}/sipbuild/module/*.py
 %{py3_sitedir}/sipbuild/module/__pycache__
