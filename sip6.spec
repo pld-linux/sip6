@@ -1,11 +1,11 @@
 Summary:	SIP - Python/C++ Bindings Generator
 Name:		sip6
-Version:	6.6.2
-Release:	4
+Version:	6.7.6
+Release:	1
 License:	GPL v2
 #Source0Download:        https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
-# Source0-md5:	620eb75a8b22fb6af9c6044aa015782d
+# Source0-md5:	ea46fe0760c0c426552c408101036a54
 URL:		https://www.riverbankcomputing.com/software/sip
 BuildRequires:	python3-devel
 BuildRequires:	python3-setuptools
@@ -56,9 +56,18 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitedir}/sipbuild/generator/*.py
 %dir %{py3_sitedir}/sipbuild/generator
 %{py3_sitedir}/sipbuild/generator/__pycache__
+%dir %{py3_sitedir}/sipbuild/generator/outputs
+%{py3_sitedir}/sipbuild/generator/outputs/*.py
+%{py3_sitedir}/sipbuild/generator/outputs/__pycache__
+%dir %{py3_sitedir}/sipbuild/generator/outputs/formatters
+%{py3_sitedir}/sipbuild/generator/outputs/formatters/*.py
+%{py3_sitedir}/sipbuild/generator/outputs/formatters/__pycache__
 %dir %{py3_sitedir}/sipbuild/generator/parser
 %{py3_sitedir}/sipbuild/generator/parser/*.py
 %{py3_sitedir}/sipbuild/generator/parser/__pycache__
+%dir %{py3_sitedir}/sipbuild/generator/resolver
+%{py3_sitedir}/sipbuild/generator/resolver/*.py
+%{py3_sitedir}/sipbuild/generator/resolver/__pycache__
 %dir %{py3_sitedir}/sipbuild/module
 %{py3_sitedir}/sipbuild/module/*.py
 %{py3_sitedir}/sipbuild/module/__pycache__
