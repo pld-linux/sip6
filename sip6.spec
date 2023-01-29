@@ -9,6 +9,7 @@ Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar
 URL:		https://www.riverbankcomputing.com/software/sip
 BuildRequires:	python3-devel
 BuildRequires:	python3-setuptools
+BuildRequires:	rpmbuild(macros) >= 1.714
 Obsoletes:	python-sip < 6
 Obsoletes:	python-sip-devel < 6
 Obsoletes:	python-PyQt5-sip < 6
