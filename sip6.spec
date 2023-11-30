@@ -1,16 +1,19 @@
 Summary:	SIP - Python/C++ Bindings Generator
 Summary(pl.UTF-8):	SIP - generator wiązań Python/C++
 Name:		sip6
-Version:	6.7.12
+Version:	6.8.0
 Release:	1
 License:	GPL v2
 #Source0Download: https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
-# Source0-md5:	992ab248fa118accb01493c040557d8d
+# Source0-md5:	a3ec0c6277de89b1830770dc2294caa2
 URL:		https://www.riverbankcomputing.com/software/sip
-BuildRequires:	python3-devel >= 1:3.7
+BuildRequires:	python3-devel >= 1:3.8
 BuildRequires:	python3-setuptools
-BuildRequires:	rpmbuild(macros) >= 1.714
+BuildRequires:	rpmbuild(macros) >= 1.750
+%if %{_ver_lt "%{py3_ver}" "3.11"}
+Requires:	python3-tomli
+%endif
 Obsoletes:	python-sip < 6
 Obsoletes:	python-sip-devel < 6
 Obsoletes:	python-PyQt5-sip < 6
@@ -60,33 +63,35 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sip-module
 %attr(755,root,root) %{_bindir}/sip-sdist
 %attr(755,root,root) %{_bindir}/sip-wheel
-%{py3_sitedir}/sip-%{version}-py*.egg-info
-%dir %{py3_sitedir}/sipbuild
-%{py3_sitedir}/sipbuild/*.py
-%attr(755,root,root) %{py3_sitedir}/sipbuild/*.so
-%{py3_sitedir}/sipbuild/__pycache__
-%dir %{py3_sitedir}/sipbuild/distinfo
-%{py3_sitedir}/sipbuild/distinfo/*.py
-%{py3_sitedir}/sipbuild/distinfo/__pycache__
-%{py3_sitedir}/sipbuild/generator/*.py
-%dir %{py3_sitedir}/sipbuild/generator
-%{py3_sitedir}/sipbuild/generator/__pycache__
-%dir %{py3_sitedir}/sipbuild/generator/outputs
-%{py3_sitedir}/sipbuild/generator/outputs/*.py
-%{py3_sitedir}/sipbuild/generator/outputs/__pycache__
-%dir %{py3_sitedir}/sipbuild/generator/outputs/formatters
-%{py3_sitedir}/sipbuild/generator/outputs/formatters/*.py
-%{py3_sitedir}/sipbuild/generator/outputs/formatters/__pycache__
-%dir %{py3_sitedir}/sipbuild/generator/parser
-%{py3_sitedir}/sipbuild/generator/parser/*.py
-%{py3_sitedir}/sipbuild/generator/parser/__pycache__
-%dir %{py3_sitedir}/sipbuild/generator/resolver
-%{py3_sitedir}/sipbuild/generator/resolver/*.py
-%{py3_sitedir}/sipbuild/generator/resolver/__pycache__
-%dir %{py3_sitedir}/sipbuild/module
-%{py3_sitedir}/sipbuild/module/*.py
-%{py3_sitedir}/sipbuild/module/__pycache__
-%{py3_sitedir}/sipbuild/module/source
-%dir %{py3_sitedir}/sipbuild/tools
-%{py3_sitedir}/sipbuild/tools/*.py
-%{py3_sitedir}/sipbuild/tools/__pycache__
+%{py3_sitescriptdir}/sip-%{version}-py*.egg-info
+%dir %{py3_sitescriptdir}/sipbuild
+%{py3_sitescriptdir}/sipbuild/*.py
+%{py3_sitescriptdir}/sipbuild/__pycache__
+%dir %{py3_sitescriptdir}/sipbuild/distinfo
+%{py3_sitescriptdir}/sipbuild/distinfo/*.py
+%{py3_sitescriptdir}/sipbuild/distinfo/__pycache__
+%{py3_sitescriptdir}/sipbuild/generator/*.py
+%dir %{py3_sitescriptdir}/sipbuild/generator
+%{py3_sitescriptdir}/sipbuild/generator/__pycache__
+%dir %{py3_sitescriptdir}/sipbuild/generator/outputs
+%{py3_sitescriptdir}/sipbuild/generator/outputs/*.py
+%{py3_sitescriptdir}/sipbuild/generator/outputs/__pycache__
+%dir %{py3_sitescriptdir}/sipbuild/generator/outputs/formatters
+%{py3_sitescriptdir}/sipbuild/generator/outputs/formatters/*.py
+%{py3_sitescriptdir}/sipbuild/generator/outputs/formatters/__pycache__
+%dir %{py3_sitescriptdir}/sipbuild/generator/parser
+%{py3_sitescriptdir}/sipbuild/generator/parser/*.py
+%{py3_sitescriptdir}/sipbuild/generator/parser/__pycache__
+%dir %{py3_sitescriptdir}/sipbuild/generator/parser/ply
+%{py3_sitescriptdir}/sipbuild/generator/parser/ply/*.py
+%{py3_sitescriptdir}/sipbuild/generator/parser/ply/__pycache__
+%dir %{py3_sitescriptdir}/sipbuild/generator/resolver
+%{py3_sitescriptdir}/sipbuild/generator/resolver/*.py
+%{py3_sitescriptdir}/sipbuild/generator/resolver/__pycache__
+%dir %{py3_sitescriptdir}/sipbuild/module
+%{py3_sitescriptdir}/sipbuild/module/*.py
+%{py3_sitescriptdir}/sipbuild/module/__pycache__
+%{py3_sitescriptdir}/sipbuild/module/source
+%dir %{py3_sitescriptdir}/sipbuild/tools
+%{py3_sitescriptdir}/sipbuild/tools/*.py
+%{py3_sitescriptdir}/sipbuild/tools/__pycache__
