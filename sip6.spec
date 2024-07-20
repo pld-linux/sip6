@@ -1,12 +1,12 @@
 Summary:	SIP - Python/C++ Bindings Generator
 Summary(pl.UTF-8):	SIP - generator wiązań Python/C++
 Name:		sip6
-Version:	6.8.3
+Version:	6.8.6
 Release:	1
 License:	GPL v2
 #Source0Download: https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
-# Source0-md5:	7e1ad92723d0f0559e987cdd4fe75613
+# Source0-md5:	e22b34924aa7790ad929081d1d7348dc
 URL:		https://www.riverbankcomputing.com/software/sip
 BuildRequires:	python3-devel >= 1:3.8
 BuildRequires:	python3-setuptools
@@ -44,6 +44,11 @@ generowania wxPythona - wiązań Pythona do wxWidgets.
 %prep
 %setup -q -n sip-%{version}
 
+cat > setup.py <<EOF
+from setuptools import setup
+setup(version='%{version}')
+EOF
+
 %build
 %py3_build
 
@@ -57,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc README.md
 %attr(755,root,root) %{_bindir}/sip-build
 %attr(755,root,root) %{_bindir}/sip-distinfo
 %attr(755,root,root) %{_bindir}/sip-install
