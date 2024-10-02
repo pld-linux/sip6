@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_with	obsolete_sip4	# whether to obsolete sip 4 (not a replacement)
+
 Summary:	SIP - Python/C++ Bindings Generator
 Summary(pl.UTF-8):	SIP - generator wiązań Python/C++
 Name:		sip6
@@ -15,15 +19,13 @@ BuildRequires:	rpmbuild(macros) >= 1.750
 %if %{_ver_lt "%{py3_ver}" "3.11"}
 Requires:	python3-tomli
 %endif
-Obsoletes:	python-sip < 6
-Obsoletes:	python-sip-devel < 6
-Obsoletes:	python-PyQt5-sip < 6
-Obsoletes:	python-PyQt5-sip-devel < 6
-Obsoletes:	python3-sip < 6
-Obsoletes:	python3-sip-devel < 6
-Obsoletes:	python3-PyQt5-sip < 6
-Obsoletes:	python3-PyQt5-sip-devel < 6
-Obsoletes:	sip < 6
+%if %{with obsolete_sip4}
+Obsoletes:	python-sip < 2:6
+Obsoletes:	python-sip-devel < 2:6
+Obsoletes:	python3-sip < 2:6
+Obsoletes:	python3-sip-devel < 2:6
+Obsoletes:	sip < 2:6
+%endif
 Obsoletes:	sip5 < 6
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
