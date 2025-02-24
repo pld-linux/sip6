@@ -12,10 +12,12 @@ License:	GPL v2
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
 # Source0-md5:	a6f939e7c1e4d1c3feb39ed56e7b2297
 URL:		https://www.riverbankcomputing.com/software/sip
+BuildRequires:	python3-build
 BuildRequires:	python3-devel >= 1:3.8
+BuildRequires:	python3-installer
 BuildRequires:	python3-setuptools >= 1:64
 BuildRequires:	python3-setuptools_scm >= 8
-BuildRequires:	rpmbuild(macros) >= 1.750
+BuildRequires:	rpmbuild(macros) >= 2.044
 %if %{_ver_lt "%{py3_ver}" "3.11"}
 Requires:	python3-tomli
 %endif
@@ -47,18 +49,13 @@ generowania wxPythona - wiązań Pythona do wxWidgets.
 %prep
 %setup -q -n sip-%{version}
 
-cat > setup.py <<EOF
-from setuptools import setup
-setup(version='%{version}')
-EOF
-
 %build
-%py3_build
+%py3_build_pyproject
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%py3_install
+%py3_install_pyproject
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -72,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sip-module
 %attr(755,root,root) %{_bindir}/sip-sdist
 %attr(755,root,root) %{_bindir}/sip-wheel
-%{py3_sitescriptdir}/sip-%{version}-py*.egg-info
+%{py3_sitescriptdir}/sip-%{version}.dist-info
 %dir %{py3_sitescriptdir}/sipbuild
 %{py3_sitescriptdir}/sipbuild/*.py
 %{py3_sitescriptdir}/sipbuild/__pycache__
