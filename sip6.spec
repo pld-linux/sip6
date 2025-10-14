@@ -17,6 +17,7 @@ BuildRequires:	python3-devel >= 1:3.9
 BuildRequires:	python3-installer
 BuildRequires:	python3-setuptools >= 1:64
 BuildRequires:	python3-setuptools_scm >= 8
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.044
 %if %{_ver_lt "%{py3_ver}" "3.11"}
 Requires:	python3-tomli
