@@ -5,12 +5,12 @@
 Summary:	SIP - Python/C++ Bindings Generator
 Summary(pl.UTF-8):	SIP - generator wiązań Python/C++
 Name:		sip6
-Version:	6.12.0
+Version:	6.13.1
 Release:	1
 License:	GPL v2
 #Source0Download: https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
-# Source0-md5:	48b28faa28edd5f5fa2d02b9c39ed5b3
+# Source0-md5:	8b369e5e954a0ef93fa2510291e73974
 URL:		https://www.riverbankcomputing.com/software/sip
 BuildRequires:	python3-build
 BuildRequires:	python3-devel >= 1:3.9
