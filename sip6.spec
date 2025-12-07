@@ -5,17 +5,17 @@
 Summary:	SIP - Python/C++ Bindings Generator
 Summary(pl.UTF-8):	SIP - generator wiązań Python/C++
 Name:		sip6
-Version:	6.14.0
+Version:	6.15.0
 Release:	1
 License:	GPL v2
 #Source0Download: https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
-# Source0-md5:	aae7959f6600739d3ad0a879c6541e93
+# Source0-md5:	dfee63f4ce7196afcb9271941c1526c0
 URL:		https://www.riverbankcomputing.com/software/sip
 BuildRequires:	python3-build
-BuildRequires:	python3-devel >= 1:3.9
+BuildRequires:	python3-devel >= 1:3.10
 BuildRequires:	python3-installer
-BuildRequires:	python3-setuptools >= 1:64
+BuildRequires:	python3-setuptools >= 1:77
 BuildRequires:	python3-setuptools_scm >= 8
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.044
@@ -86,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitescriptdir}/sipbuild/generator/outputs/code
 %{py3_sitescriptdir}/sipbuild/generator/outputs/code/*.py
 %{py3_sitescriptdir}/sipbuild/generator/outputs/code/__pycache__
+%dir %{py3_sitescriptdir}/sipbuild/generator/outputs/code/backends
+%{py3_sitescriptdir}/sipbuild/generator/outputs/code/backends/*.py
+%{py3_sitescriptdir}/sipbuild/generator/outputs/code/backends/__pycache__
 %dir %{py3_sitescriptdir}/sipbuild/generator/outputs/formatters
 %{py3_sitescriptdir}/sipbuild/generator/outputs/formatters/*.py
 %{py3_sitescriptdir}/sipbuild/generator/outputs/formatters/__pycache__
