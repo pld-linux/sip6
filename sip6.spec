@@ -11,6 +11,7 @@ License:	GPL v2
 #Source0Download: https://pypi.org/project/sip/
 Source0:	https://files.pythonhosted.org/packages/source/s/sip/sip-%{version}.tar.gz
 # Source0-md5:	3934e640561d3e9f48f9258ea9d89def
+Patch0:		PyQt5.patch
 URL:		https://www.riverbankcomputing.com/software/sip
 BuildRequires:	python3-build
 BuildRequires:	python3-devel >= 1:3.10
@@ -49,6 +50,7 @@ generowania wxPythona - wiązań Pythona do wxWidgets.
 
 %prep
 %setup -q -n sip-%{version}
+%patch -P1 -p1
 
 %build
 %py3_build_pyproject

@@ -1,0 +1,53 @@
+From 8c451945db664385d20e006a35cc56019743b7d7 Mon Sep 17 00:00:00 2001
+From: Bad3r <github@unsigned.sh>
+Date: Thu, 3 Sep 2026 14:27:44 +0300
+Subject: [PATCH] python3Packages.sip: fix legacy ABI bindings without
+ %MinimumABIVersion
+
+sip 6.16.1 (nixpkgs commit 20d260705e61, PR #558075) makes sipbuild's _finalise_abi_version reject any project that
+passes an explicit abi-version for ABI 12 or 13 unless the module's .sip files declare %MinimumABIVersion, a directive
+that only exists since 6.16. PyQt5 5.15.10 passes abi_version '12.13' from project.py and declares nothing, so
+python3Packages.pyqt5 fails in the generator with:
+
+    _in_process.py: ABI v12 is being targeted but the PyQt5.QtCore module doesn't support it
+
+Apply the upstream fix, Python-SIP/sip commit 09598895 (resolves Python-SIP/sip#114), which skips the check for
+ABI <= 13 when no minimum is declared. No sip release contains it yet; drop this patch once one does. Tracked in
+NixOS/nixpkgs#559458.
+
+Validation: nix build -f . python3Packages.sip (patch applies to sipbuild/generator/parser/parser_manager.py);
+nix build -f . python3Packages.pyqt5 gets past "Generating the QtCore bindings" and through the following modules
+(cancelled before the C++ compile stage).
+---
+ pkgs/development/python-modules/sip/default.nix | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/pkgs/development/python-modules/sip/default.nix b/pkgs/development/python-modules/sip/default.nix
+index 5e3fb1bcab78c..8fa287810ccf0 100644
+--- a/pkgs/development/python-modules/sip/default.nix
++++ b/pkgs/development/python-modules/sip/default.nix
+@@ -2,6 +2,7 @@
+   lib,
+   buildPythonPackage,
+   fetchPypi,
++  fetchpatch,
+   setuptools,
+   setuptools-scm,
+   packaging,
+@@ -22,6 +23,16 @@ buildPythonPackage (finalAttrs: {
+     hash = "sha256-CnOcnNKSneTgiERW2Mrzz7IsEFNHV8d5e9jca9ntabw=";
+   };
+ 
++  patches = [
++    # 6.16.1 rejects bindings that target ABI 12/13 without declaring
++    # %MinimumABIVersion, which breaks pyqt5. Fixed upstream after 6.16.1.
++    (fetchpatch {
++      name = "sip-allow-legacy-abi-without-minimum-abi-version.patch";
++      url = "https://github.com/Python-SIP/sip/commit/09598895c607f3e41f0249ade217ace0a4da6437.patch";
++      hash = "sha256-v0YeHyg0ymB0v32gpVRbMBIUk9U2etjs93VuOGPGg2M=";
++    })
++  ];
++
+   build-system = [
+     setuptools
+     setuptools-scm
