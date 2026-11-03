@@ -50,7 +50,7 @@ generowania wxPythona - wiązań Pythona do wxWidgets.
 
 %prep
 %setup -q -n sip-%{version}
-%patch -P1 -p1
+%patch -P0 -p1
 
 %build
 %py3_build_pyproject
